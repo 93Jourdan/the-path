@@ -1,0 +1,13 @@
+<!-- templates/dashboard.html -->
+{% extends "base.html" %}
+
+{% block title %}Dashboard — The Path{% endblock %}
+
+{% block content %}
+<div style="text-align: center; padding: 3rem;">
+    <h1>Welcome, {{ current_user.username }} 🕊️</h1>
+    <p style="color: var(--text-soft); font-family: 'Lora', serif; font-style: italic; margin-top: 1rem;">
+        "Every day is a new beginning. Take a deep breath and start again."
+    </p>
+</div>
+{% endblock %}

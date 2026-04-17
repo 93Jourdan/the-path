@@ -1,0 +1,217 @@
+/* static/style.css */
+/* Warm, faith-inspired design for The Path */
+
+/* ── Global Variables ── */
+:root {
+    --cream: #fdf6ec;
+    --warm-brown: #8b5e3c;
+    --soft-gold: #c9a84c;
+    --deep-brown: #4a2e1a;
+    --light-tan: #f0e0c8;
+    --text-dark: #2d1f0e;
+    --text-soft: #7a6652;
+    --white: #ffffff;
+    --success: #5a8a5a;
+    --error: #a05050;
+}
+
+/* ── Reset & Base ── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--cream);
+    color: var(--text-dark);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3 {
+    font-family: 'Lora', serif;
+    color: var(--deep-brown);
+}
+
+a {
+    color: var(--warm-brown);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--soft-gold);
+}
+
+/* ── Navbar ── */
+.navbar {
+    background-color: var(--deep-brown);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    font-family: 'Lora', serif;
+    font-size: 1.4rem;
+    color: var(--soft-gold);
+    font-weight: 600;
+}
+
+.nav-brand:hover {
+    color: var(--light-tan);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--light-tan);
+    font-size: 0.95rem;
+}
+
+.nav-links a:hover {
+    color: var(--soft-gold);
+}
+
+.nav-links span {
+    color: var(--soft-gold);
+    font-size: 0.95rem;
+}
+
+/* ── Flash Messages ── */
+.flash-messages {
+    padding: 0 2rem;
+}
+
+.flash {
+    padding: 0.75rem 1rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.flash-success {
+    background-color: #dff0df;
+    color: var(--success);
+    border: 1px solid var(--success);
+}
+
+.flash-error {
+    background-color: #f0dfdf;
+    color: var(--error);
+    border: 1px solid var(--error);
+}
+
+/* ── Main Content ── */
+.main-content {
+    flex: 1;
+    padding: 2rem;
+}
+
+/* ── Auth Pages ── */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.auth-card {
+    background-color: var(--white);
+    border: 1px solid var(--light-tan);
+    border-radius: 16px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 4px 24px rgba(74, 46, 26, 0.08);
+}
+
+.auth-card h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.4rem;
+}
+
+.auth-subtitle {
+    color: var(--text-soft);
+    font-style: italic;
+    margin-bottom: 1.8rem;
+    font-family: 'Lora', serif;
+}
+
+/* ── Forms ── */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-soft);
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--light-tan);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--cream);
+    color: var(--text-dark);
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--soft-gold);
+}
+
+/* ── Buttons ── */
+.btn-primary {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: var(--warm-brown);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: var(--deep-brown);
+}
+
+/* ── Auth Switch ── */
+.auth-switch {
+    text-align: center;
+    margin-top: 1.2rem;
+    font-size: 0.9rem;
+    color: var(--text-soft);
+}
+
+/* ── Footer ── */
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--text-soft);
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--light-tan);
+}

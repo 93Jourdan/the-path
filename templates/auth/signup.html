@@ -1,0 +1,36 @@
+<!-- templates/auth/signup.html -->
+{% extends "base.html" %}
+
+{% block title %}Sign Up — The Path{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h1>Begin Your Path</h1>
+        <p class="auth-subtitle">Every journey starts with a single step.</p>
+
+        <form method="POST" action="{{ url_for('auth.signup') }}">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required placeholder="Your name">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="you@email.com">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="••••••••">
+            </div>
+
+            <button type="submit" class="btn-primary">Create Account</button>
+        </form>
+
+        <p class="auth-switch">
+            Already have an account? <a href="{{ url_for('auth.login') }}">Log In</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
