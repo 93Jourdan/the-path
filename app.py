@@ -27,6 +27,8 @@ def create_app():
     app.register_blueprint(auth)
     from routes.tracker import tracker
     app.register_blueprint(tracker)
+    from routes.checkin import checkin
+    app.register_blueprint(checkin)
 
     # Basic dashboard route — we'll build this out fully in the next step
     @app.route('/')

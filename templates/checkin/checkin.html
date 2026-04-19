@@ -1,0 +1,40 @@
+<!-- templates/checkin/checkin.html -->
+{% extends "base.html" %}
+
+{% block title %}Daily Check-In — The Path{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <div class="page-header">
+        <h1>🌤️ Daily Check-Ins</h1>
+        <p class="page-subtitle">Showing up for yourself every day is an act of courage.</p>
+
+        {% if already_checked_in %}
+            <div class="checked-in-badge">✅ You've checked in today. Well done.</div>
+        {% else %}
+            <a href="{{ url_for('checkin.add_checkin') }}" class="btn-primary">+ Check In Today</a>
+        {% endif %}
+    </div>
+
+    {% if checkins %}
+        <div class="checkin-list">
+            {% for c in checkins %}
+            <div class="checkin-card">
+                <div class="checkin-header">
+                    <span class="checkin-mood mood-{{ c.mood | lower }}">{{ c.mood }}</span>
+                    <span class="checkin-date">{{ c.created_at.strftime('%B %d, %Y') }}</span>
+                </div>
+                {% if c.reflection %}
+                    <p class="checkin-reflection">"{{ c.reflection }}"</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <p>🕊️ No check-ins yet.</p>
+            <p>Start today — every entry is a step forward.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

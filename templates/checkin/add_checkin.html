@@ -1,0 +1,58 @@
+<!-- templates/checkin/add_checkin.html -->
+{% extends "base.html" %}
+
+{% block title %}Check In — The Path{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h1>How are you today?</h1>
+        <p class="auth-subtitle">Be honest. This space is just for you.</p>
+
+        <form method="POST" action="{{ url_for('checkin.add_checkin') }}">
+            <div class="form-group">
+                <label>How are you feeling?</label>
+                <div class="mood-grid">
+                    <label class="mood-option">
+                        <input type="radio" name="mood" value="Grateful" required>
+                        <span>🙏 Grateful</span>
+                    </label>
+                    <label class="mood-option">
+                        <input type="radio" name="mood" value="Hopeful">
+                        <span>🌅 Hopeful</span>
+                    </label>
+                    <label class="mood-option">
+                        <input type="radio" name="mood" value="Peaceful">
+                        <span>🕊️ Peaceful</span>
+                    </label>
+                    <label class="mood-option">
+                        <input type="radio" name="mood" value="Anxious">
+                        <span>😟 Anxious</span>
+                    </label>
+                    <label class="mood-option">
+                        <input type="radio" name="mood" value="Struggling">
+                        <span>💔 Struggling</span>
+                    </label>
+                    <label class="mood-option">
+                        <input type="radio" name="mood" value="Strong">
+                        <span>💪 Strong</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="reflection">Reflection (optional)</label>
+                <textarea id="reflection" name="reflection" rows="4"
+                    placeholder="What's on your heart today?"
+                    class="form-textarea"></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary">Save Check-In</button>
+        </form>
+
+        <p class="auth-switch">
+            <a href="{{ url_for('checkin.checkin_home') }}">← Back to Check-Ins</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
