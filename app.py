@@ -25,6 +25,8 @@ def create_app():
     # Register blueprints
     from routes.auth import auth
     app.register_blueprint(auth)
+    from routes.tracker import tracker
+    app.register_blueprint(tracker)
 
     # Basic dashboard route — we'll build this out fully in the next step
     @app.route('/')

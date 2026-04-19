@@ -1,0 +1,51 @@
+<!-- templates/tracker/tracker.html -->
+{% extends "base.html" %}
+
+{% block title %}Sobriety Tracker — The Path{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <div class="page-header">
+        <h1>🛤️ Your Sobriety Journey</h1>
+        <p class="page-subtitle">Every single day counts. You are stronger than you know.</p>
+        <a href="{{ url_for('tracker.add_tracker') }}" class="btn-primary">+ Add New Tracker</a>
+    </div>
+
+    {% if tracker_data %}
+        <div class="tracker-grid">
+            {% for item in tracker_data %}
+            <div class="tracker-card">
+                <div class="tracker-type">{{ item.tracker.addiction_type }}</div>
+
+                <div class="streak-display">
+                    <span class="streak-number">{{ item.streak }}</span>
+                    <span class="streak-label">days</span>
+                </div>
+
+                <div class="tracker-since">
+                    Since {{ item.tracker.start_date.strftime('%B %d, %Y') }}
+                </div>
+
+                {% if item.tracker.is_active %}
+                    <div class="tracker-status active">✅ Active</div>
+                {% else %}
+                    <div class="tracker-status inactive">Inactive</div>
+                {% endif %}
+
+                <!-- Relapse button — resets the streak -->
+                <form method="POST" action="{{ url_for('tracker.log_relapse', tracker_id=item.tracker.id) }}"
+                      onsubmit="return confirm('Are you sure? This will reset your streak.')">
+                    <button type="submit" class="btn-relapse">Log Relapse</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <p>🕊️ You haven't started any trackers yet.</p>
+            <p>Begin your journey today.</p>
+            <a href="{{ url_for('tracker.add_tracker') }}" class="btn-primary">Start Tracking</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

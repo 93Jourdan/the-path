@@ -1,0 +1,40 @@
+<!-- templates/tracker/add_tracker.html -->
+{% extends "base.html" %}
+
+{% block title %}Add Tracker — The Path{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h1>Start a New Tracker</h1>
+        <p class="auth-subtitle">Naming it is the first step to overcoming it.</p>
+
+        <form method="POST" action="{{ url_for('tracker.add_tracker') }}">
+            <div class="form-group">
+                <label for="addiction_type">What are you recovering from?</label>
+                <select id="addiction_type" name="addiction_type" class="form-select">
+                    <option value="">Select one...</option>
+                    <option value="Alcohol">Alcohol</option>
+                    <option value="Substances">Substances</option>
+                    <option value="Gambling">Gambling</option>
+                    <option value="Food">Food</option>
+                    <option value="Pornography">Pornography</option>
+                    <option value="Codependency">Codependency</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="start_date">Sobriety start date</label>
+                <input type="date" id="start_date" name="start_date" required>
+            </div>
+
+            <button type="submit" class="btn-primary">Begin Tracking</button>
+        </form>
+
+        <p class="auth-switch">
+            <a href="{{ url_for('tracker.tracker_home') }}">← Back to Trackers</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

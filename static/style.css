@@ -215,3 +215,123 @@ a:hover {
     font-size: 0.9rem;
     border-top: 1px solid var(--light-tan);
 }
+
+/* ── Tracker ── */
+.page-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.page-subtitle {
+    color: var(--text-soft);
+    font-family: 'Lora', serif;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+
+.tracker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.tracker-card {
+    background-color: var(--white);
+    border: 1px solid var(--light-tan);
+    border-radius: 16px;
+    padding: 1.8rem;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(74, 46, 26, 0.06);
+}
+
+.tracker-type {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--warm-brown);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.streak-display {
+    margin: 1rem 0;
+}
+
+.streak-number {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--deep-brown);
+    font-family: 'Lora', serif;
+    line-height: 1;
+}
+
+.streak-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+}
+
+.tracker-since {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    margin-bottom: 0.8rem;
+}
+
+.tracker-status.active {
+    font-size: 0.85rem;
+    color: var(--success);
+    margin-bottom: 1rem;
+}
+
+.btn-relapse {
+    width: 100%;
+    padding: 0.6rem;
+    background-color: transparent;
+    color: var(--error);
+    border: 1px solid var(--error);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+}
+
+.btn-relapse:hover {
+    background-color: var(--error);
+    color: var(--white);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-soft);
+    font-family: 'Lora', serif;
+    font-style: italic;
+    line-height: 2;
+}
+
+.form-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--light-tan);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--cream);
+    color: var(--text-dark);
+}
