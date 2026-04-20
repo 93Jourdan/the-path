@@ -1,16 +1,9 @@
 # models.py
-# Models are Python classes that represent tables in our database.
-# Each class = one table. Each attribute = one column.
-
-# models.py
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from datetime import datetime
 
 db = SQLAlchemy()
-
-# UserMixin gives our User class built-in methods that Flask-Login needs
-# like is_authenticated, is_active, get_id()
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
@@ -18,7 +11,7 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(200), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    # Relationships — one user can have many of each of these
+    # Relationships
     sobriety = db.relationship('SobrietyTracker', backref='user', lazy=True)
     checkins = db.relationship('CheckIn', backref='user', lazy=True)
     spiritual_logs = db.relationship('SpiritualLog', backref='user', lazy=True)

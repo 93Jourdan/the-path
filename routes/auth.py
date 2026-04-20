@@ -8,8 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from models import User
 from models import db
 
-# A Blueprint is like a mini-app inside our main app
-# It lets us organize routes by feature instead of dumping everything in one file
+# Blueprint
 auth = Blueprint('auth', __name__)
 
 
@@ -28,7 +27,6 @@ def signup():
             flash('Email already registered. Please log in.', 'error')
             return redirect(url_for('auth.signup'))
 
-        # NEVER store plain text passwords
         # generate_password_hash turns "mypassword" into a long scrambled string
         hashed_password = generate_password_hash(password)
 
