@@ -4,6 +4,14 @@ A full-stack web application designed to support individuals recovering from add
 
 ---
 
+## 🌐 Live Demo
+
+👉 **https://the-path.onrender.com/**
+
+> Replace the URL above with your actual Render URL before saving!
+
+---
+
 ## 🌟 About The Project
 
 The Path is a personal recovery companion that helps users:
@@ -135,7 +143,7 @@ the_path/
 
 ## 🎯 Roadmap
 
-- [ ] Deploy to live server (Render / Railway)
+- [x] Deploy to live server (Render)
 - [ ] Add community support groups feature
 - [ ] Add motivational quotes API integration
 - [ ] Add data visualization for mood trends over time
