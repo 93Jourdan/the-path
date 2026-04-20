@@ -9,7 +9,12 @@ def create_app():
     app = Flask(__name__)
 
     app.config['SECRET_KEY'] = 'your-secret-key-change-this-later'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///the_path.db'
+
+    import os
+    database_url = os.environ.get('DATABASE_URL', 'sqlite:///the_path.db')
+    if database_url.startswith('postgres://'):
+        database_url = database_url.replace('postgres://', 'postgresql://', 1)
+    app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 
     db.init_app(app)
     login_manager.init_app(app)
