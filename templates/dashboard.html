@@ -4,11 +4,134 @@
 {% block title %}Dashboard — The Path{% endblock %}
 
 {% block content %}
-<div style="text-align: center; padding: 3rem;">
-    <h1>Welcome, {{ current_user.username }} 🕊️</h1>
-    <p style="color: var(--text-soft); font-family: 'Lora', serif; font-style: italic; margin-top: 1rem;">
-        "If it's out of your hands, it deserves Freedom from your mind" 
-                            - BreAnn
-    </p>
+<div class="page-container">
+
+    <!-- Welcome Header -->
+    <div class="dashboard-header">
+        <h1>Welcome back, {{ current_user.username }} 🕊️</h1>
+        <p class="page-subtitle">
+            "The journey of a thousand miles begins with a single step."
+        </p>
+    </div>
+
+    <!-- Quick Stats Row -->
+    <div class="stats-row">
+        <div class="stat-card">
+            <span class="stat-number">{{ total_days }}</span>
+            <span class="stat-label">Total Sober Days</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">{{ total_checkins }}</span>
+            <span class="stat-label">Check-Ins Logged</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">{{ total_spiritual }}</span>
+            <span class="stat-label">Spiritual Activities</span>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Grid -->
+    <div class="dashboard-grid">
+
+        <!-- Sobriety Trackers -->
+        <div class="dashboard-card">
+            <div class="card-header">
+                <h2>🛤️ Sobriety</h2>
+                <a href="{{ url_for('tracker.tracker_home') }}">View All</a>
+            </div>
+            {% if trackers %}
+                {% for item in trackers %}
+                <div class="dashboard-streak">
+                    <div class="streak-info">
+                        <span class="streak-type">{{ item.tracker.addiction_type }}</span>
+                        <span class="streak-since">
+                            Since {{ item.tracker.start_date.strftime('%b %d, %Y') }}
+                        </span>
+                    </div>
+                    <div class="streak-badge">{{ item.streak }} days</div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="card-empty">No trackers yet.
+                    <a href="{{ url_for('tracker.add_tracker') }}">Start one →</a>
+                </p>
+            {% endif %}
+        </div>
+
+        <!-- Today's Check-In -->
+        <div class="dashboard-card">
+            <div class="card-header">
+                <h2>🌤️ Today's Check-In</h2>
+                <a href="{{ url_for('checkin.checkin_home') }}">View All</a>
+            </div>
+            {% if already_checked_in %}
+                <div class="checked-in-badge">✅ Checked in today!</div>
+                {% if latest_checkin %}
+                    <p class="dashboard-mood">Feeling: <strong>{{ latest_checkin.mood }}</strong></p>
+                    {% if latest_checkin.reflection %}
+                        <p class="checkin-reflection">"{{ latest_checkin.reflection }}"</p>
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                <p class="card-empty">You haven't checked in today.</p>
+                <a href="{{ url_for('checkin.add_checkin') }}" class="btn-primary">
+                    Check In Now
+                </a>
+            {% endif %}
+        </div>
+
+        <!-- Spiritual Journey -->
+        <div class="dashboard-card">
+            <div class="card-header">
+                <h2>🙏 Spiritual Journey</h2>
+                <a href="{{ url_for('spiritual.spiritual_home') }}">View All</a>
+            </div>
+            {% if recent_spiritual %}
+                {% for log in recent_spiritual %}
+                <div class="dashboard-spiritual">
+                    <span class="spiritual-type">
+                        {% if log.activity_type == 'Prayer' %}🙏
+                        {% elif log.activity_type == 'Gratitude' %}💛
+                        {% elif log.activity_type == 'Reading' %}📖
+                        {% elif log.activity_type == 'Meditation' %}🧘
+                        {% elif log.activity_type == 'Worship' %}🎵
+                        {% elif log.activity_type == 'Milestone' %}⭐
+                        {% else %}✨
+                        {% endif %}
+                        {{ log.activity_type }}
+                    </span>
+                    <span class="checkin-date">
+                        {{ log.created_at.strftime('%b %d') }}
+                    </span>
+                </div>
+                {% if log.note %}
+                    <p class="checkin-reflection">"{{ log.note }}"</p>
+                {% endif %}
+                {% endfor %}
+            {% else %}
+                <p class="card-empty">No spiritual activity yet.
+                    <a href="{{ url_for('spiritual.add_spiritual') }}">Log one →</a>
+                </p>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <h2>Quick Actions</h2>
+        <div class="actions-grid">
+            <a href="{{ url_for('checkin.add_checkin') }}" class="action-btn">
+                🌤️ Check In
+            </a>
+            <a href="{{ url_for('tracker.add_tracker') }}" class="action-btn">
+                🛤️ Add Tracker
+            </a>
+            <a href="{{ url_for('spiritual.add_spiritual') }}" class="action-btn">
+                🙏 Log Spiritual Activity
+            </a>
+        </div>
+    </div>
+
 </div>
 {% endblock %}
