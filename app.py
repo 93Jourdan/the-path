@@ -1,7 +1,8 @@
 # app.py
-from flask import Flask, render_template
+from flask import Flask, app, render_template
 from flask_login import LoginManager, login_required, current_user
 from models import db
+from routes import spiritual
 
 login_manager = LoginManager()
 
@@ -25,10 +26,15 @@ def create_app():
     # Register blueprints
     from routes.auth import auth
     app.register_blueprint(auth)
+    
     from routes.tracker import tracker
     app.register_blueprint(tracker)
+    
     from routes.checkin import checkin
     app.register_blueprint(checkin)
+
+    from routes.spiritual import spiritual
+    app.register_blueprint(spiritual)
 
     # Basic dashboard route — we'll build this out fully in the next step
     @app.route('/')

@@ -1,0 +1,66 @@
+<!-- templates/spiritual/spiritual.html -->
+{% extends "base.html" %}
+
+{% block title %}Spiritual Journey — The Path{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <div class="page-header">
+        <h1>🙏 Your Spiritual Journey</h1>
+        <p class="page-subtitle">
+            "Be still and know." Every prayer, every reading, every moment of
+            gratitude is a step closer to wholeness.
+        </p>
+        <a href="{{ url_for('spiritual.add_spiritual') }}" class="btn-primary">
+            + Log Activity
+        </a>
+    </div>
+
+    <!-- Activity Summary -->
+    {% if activity_counts %}
+    <div class="spiritual-summary">
+        {% for activity, count in activity_counts.items() %}
+        <div class="summary-card">
+            <span class="summary-count">{{ count }}</span>
+            <span class="summary-label">{{ activity }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Activity Log -->
+    {% if logs %}
+        <h2 class="section-title">Recent Activity</h2>
+        <div class="spiritual-list">
+            {% for log in logs %}
+            <div class="spiritual-card">
+                <div class="spiritual-header">
+                    <span class="spiritual-type">
+                        {% if log.activity_type == 'Prayer' %}🙏
+                        {% elif log.activity_type == 'Gratitude' %}💛
+                        {% elif log.activity_type == 'Reading' %}📖
+                        {% elif log.activity_type == 'Meditation' %}🧘
+                        {% elif log.activity_type == 'Worship' %}🎵
+                        {% elif log.activity_type == 'Milestone' %}⭐
+                        {% else %}✨
+                        {% endif %}
+                        {{ log.activity_type }}
+                    </span>
+                    <span class="checkin-date">
+                        {{ log.created_at.strftime('%B %d, %Y') }}
+                    </span>
+                </div>
+                {% if log.note %}
+                    <p class="checkin-reflection">"{{ log.note }}"</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <p>🕊️ Your spiritual journey log is empty.</p>
+            <p>Log your first activity today.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

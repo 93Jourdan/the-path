@@ -1,0 +1,58 @@
+<!-- templates/spiritual/add_spiritual.html -->
+{% extends "base.html" %}
+
+{% block title %}Log Activity — The Path{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h1>Log Spiritual Activity</h1>
+        <p class="auth-subtitle">Every act of faith, however small, matters.</p>
+
+        <form method="POST" action="{{ url_for('spiritual.add_spiritual') }}">
+            <div class="form-group">
+                <label>Activity Type</label>
+                <div class="mood-grid">
+                    <label class="mood-option">
+                        <input type="radio" name="activity_type" value="Prayer" required>
+                        <span>🙏 Prayer</span>
+                    </label>
+                    <label class="mood-option">
+                        <input type="radio" name="activity_type" value="Gratitude">
+                        <span>💛 Gratitude</span>
+                    </label>
+                    <label class="mood-option">
+                        <input type="radio" name="activity_type" value="Reading">
+                        <span>📖 Reading</span>
+                    </label>
+                    <label class="mood-option">
+                        <input type="radio" name="activity_type" value="Meditation">
+                        <span>🧘 Meditation</span>
+                    </label>
+                    <label class="mood-option">
+                        <input type="radio" name="activity_type" value="Worship">
+                        <span>🎵 Worship</span>
+                    </label>
+                    <label class="mood-option">
+                        <input type="radio" name="activity_type" value="Milestone">
+                        <span>⭐ Milestone</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="note">Note (optional)</label>
+                <textarea id="note" name="note" rows="4"
+                    placeholder="What did you experience? What are you grateful for?"
+                    class="form-textarea"></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary">Log Activity</button>
+        </form>
+
+        <p class="auth-switch">
+            <a href="{{ url_for('spiritual.spiritual_home') }}">← Back to Spiritual Journey</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

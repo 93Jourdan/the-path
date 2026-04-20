@@ -335,3 +335,192 @@ a:hover {
     background-color: var(--cream);
     color: var(--text-dark);
 }
+
+/* ── Check-Ins ── */
+.checked-in-badge {
+    display: inline-block;
+    background-color: #dff0df;
+    color: var(--success);
+    border: 1px solid var(--success);
+    border-radius: 20px;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.checkin-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.checkin-card {
+    background-color: var(--white);
+    border: 1px solid var(--light-tan);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    box-shadow: 0 2px 8px rgba(74, 46, 26, 0.05);
+}
+
+.checkin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.checkin-mood {
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    background-color: var(--light-tan);
+    color: var(--warm-brown);
+}
+
+.checkin-date {
+    font-size: 0.8rem;
+    color: var(--text-soft);
+}
+
+.checkin-reflection {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    line-height: 1.6;
+}
+
+/* Mood selector grid */
+.mood-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.mood-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mood-option input[type="radio"] {
+    display: none;
+}
+
+.mood-option span {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0.6rem 0.4rem;
+    border: 1px solid var(--light-tan);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    background-color: var(--cream);
+    transition: all 0.2s;
+}
+
+.mood-option input[type="radio"]:checked + span {
+    background-color: var(--warm-brown);
+    color: var(--white);
+    border-color: var(--warm-brown);
+}
+
+.mood-option span:hover {
+    border-color: var(--warm-brown);
+}
+
+/* Textarea */
+.form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--light-tan);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Lora', serif;
+    background-color: var(--cream);
+    color: var(--text-dark);
+    resize: vertical;
+    transition: border-color 0.2s;
+}
+
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--soft-gold);
+}
+
+/* ── Spiritual Journey ── */
+.spiritual-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.summary-card {
+    background-color: var(--white);
+    border: 1px solid var(--light-tan);
+    border-radius: 12px;
+    padding: 1.2rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(74, 46, 26, 0.05);
+}
+
+.summary-count {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'Lora', serif;
+    color: var(--warm-brown);
+}
+
+.summary-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.3rem;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    color: var(--warm-brown);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--light-tan);
+}
+
+.spiritual-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.spiritual-card {
+    background-color: var(--white);
+    border: 1px solid var(--light-tan);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    box-shadow: 0 2px 8px rgba(74, 46, 26, 0.05);
+}
+
+.spiritual-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.spiritual-type {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--warm-brown);
+}
