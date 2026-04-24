@@ -10,6 +10,10 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    bio = db.Column(db.String(300), nullable=True)
+    display_name = db.Column(db.String(80), nullable=True)
+    avatar_url = db.Column(db.String(500), nullable=True)
+
 
     # Relationships
     sobriety = db.relationship('SobrietyTracker', backref='user', lazy=True)
@@ -18,7 +22,7 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return f'<User {self.username}>'
-
+    
 
 class SobrietyTracker(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -52,7 +56,7 @@ class SpiritualLog(db.Model):
 
     def __repr__(self):
         return f'<SpiritualLog {self.activity_type}>'
-
+    
 class WallMessage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(280), nullable=False)

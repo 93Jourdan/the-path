@@ -5,13 +5,16 @@ x{% extends "base.html" %}
 
   <!-- Avatar + Name -->
   <div class="profile-header">
-    <div class="profile-avatar">
-      {{ profile_user.display_name[0].upper() if profile_user.display_name else profile_user.username[0].upper() }}
+    <<div class="profile-avatar">
+  {% if profile_user.avatar_url %}
+    <img src="{{ profile_user.avatar_url }}" alt="{{ profile_user.username }}">
+  {% else %}
+    {{ profile_user.display_name[0].upper() if profile_user.display_name else profile_user.username[0].upper() }}
+  {% endif %}
     </div>
     <div class="profile-info">
       <h1>{{ profile_user.display_name or profile_user.username }}</h1>
       <p class="profile-username">@{{ profile_user.username }}</p>
-      <p class="profile-joined">On this path since {{ profile_user.created_at.strftime('%B %Y') }}</p>
     </div>
     {% if current_user.is_authenticated and current_user.id == profile_user.id %}
       <a href="{{ url_for('profile.edit_profile') }}" class="btn-secondary">Edit Profile</a>
