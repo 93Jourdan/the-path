@@ -5,7 +5,7 @@ x{% extends "base.html" %}
 
   <!-- Avatar + Name -->
   <div class="profile-header">
-    <<div class="profile-avatar">
+    <div class="profile-avatar">
   {% if profile_user.avatar_url %}
     <img src="{{ profile_user.avatar_url }}" alt="{{ profile_user.username }}">
   {% else %}
