@@ -96,6 +96,25 @@ app = create_app()
 
 with app.app_context():
     db.create_all()
+    # Add new columns if they don't exist yet
+    with db.engine.connect() as conn:
+        for sql in [
+            'ALTER TABLE "user" ADD COLUMN IF NOT EXISTS bio VARCHAR(300)',
+            'ALTER TABLE "user" ADD COLUMN IF NOT EXISTS display_name VARCHAR(80)',
+            'ALTER TABLE "user" ADD COLUMN IF NOT EXISTS avatar_url VARCHAR(500)',
+            '''CREATE TABLE IF NOT EXISTS wall_message (
+                id SERIAL PRIMARY KEY,
+                body VARCHAR(280) NOT NULL,
+                timestamp TIMESTAMP DEFAULT NOW(),
+                author_id INTEGER REFERENCES "user"(id),
+                recipient_id INTEGER REFERENCES "user"(id)
+            )''',
+        ]:
+            try:
+                conn.execute(db.text(sql))
+            except Exception:
+                pass
+        conn.commit()
 
 if __name__ == '__main__':
     app.run(debug=True)
