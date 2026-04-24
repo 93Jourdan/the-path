@@ -1,0 +1,62 @@
+x{% extends "base.html" %}
+
+{% block content %}
+<div class="profile-container">
+
+  <!-- Avatar + Name -->
+  <div class="profile-header">
+    <div class="profile-avatar">
+      {{ profile_user.display_name[0].upper() if profile_user.display_name else profile_user.username[0].upper() }}
+    </div>
+    <div class="profile-info">
+      <h1>{{ profile_user.display_name or profile_user.username }}</h1>
+      <p class="profile-username">@{{ profile_user.username }}</p>
+      <p class="profile-joined">On this path since {{ profile_user.created_at.strftime('%B %Y') }}</p>
+    </div>
+    {% if current_user.is_authenticated and current_user.id == profile_user.id %}
+      <a href="{{ url_for('profile.edit_profile') }}" class="btn-secondary">Edit Profile</a>
+    {% endif %}
+  </div>
+
+  <!-- Bio -->
+  {% if profile_user.bio %}
+  <div class="profile-bio">
+    <p>{{ profile_user.bio }}</p>
+  </div>
+  {% endif %}
+
+  <!-- Streak -->
+  {% if streak is not none %}
+  <div class="profile-streak">
+    <span class="streak-number">{{ streak }}</span>
+    <span class="streak-label">days on the path 🌱</span>
+  </div>
+  {% endif %}
+
+  <!-- Wall of Encouragement -->
+  <div class="wall-section">
+    <h2>Wall of Encouragement</h2>
+
+    {% if current_user.is_authenticated and current_user.id != profile_user.id %}
+    <form action="{{ url_for('profile.post_encouragement', username=profile_user.username) }}" method="POST" class="wall-form">
+      <textarea name="body" maxlength="280" placeholder="Leave an encouraging word..." required></textarea>
+      <button type="submit" class="btn-primary">Post</button>
+    </form>
+    {% elif not current_user.is_authenticated %}
+    <p class="wall-login-prompt"><a href="{{ url_for('auth.login') }}">Log in</a> to leave encouragement.</p>
+    {% endif %}
+
+    {% if wall_messages %}
+      {% for msg in wall_messages %}
+      <div class="wall-message">
+        <p class="wall-body">{{ msg.body }}</p>
+        <p class="wall-meta">— <a href="{{ url_for('profile.view_profile', username=msg.author.username) }}">{{ msg.author.display_name or msg.author.username }}</a> · {{ msg.timestamp.strftime('%b %d, %Y') }}</p>
+      </div>
+      {% endfor %}
+    {% else %}
+      <p class="wall-empty">No encouragement yet — be the first! 🕊️</p>
+    {% endif %}
+  </div>
+
+</div>
+{% endblock %}

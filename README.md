@@ -144,6 +144,7 @@ the_path/
 ## 🎯 Roadmap
 
 - [x] Deploy to live server (Render)
+- [ ] Create User Profiles
 - [ ] Add community support groups feature
 - [ ] Add motivational quotes API integration
 - [ ] Add data visualization for mood trends over time

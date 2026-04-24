@@ -34,6 +34,8 @@ def create_app():
     app.register_blueprint(checkin)
     from routes.spiritual import spiritual
     app.register_blueprint(spiritual)
+    from routes.profile import profile
+    app.register_blueprint(profile)
 
     @app.route('/')
     @app.route('/dashboard')

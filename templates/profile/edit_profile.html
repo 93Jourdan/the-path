@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+  <h1>Edit Your Profile</h1>
+
+  <form action="{{ url_for('profile.edit_profile') }}" method="POST">
+    <div class="form-group">
+      <label for="display_name">Display Name</label>
+      <input type="text" id="display_name" name="display_name" maxlength="80"
+        value="{{ current_user.display_name or '' }}" placeholder="Your name">
+    </div>
+
+    <div class="form-group">
+      <label for="bio">Bio</label>
+      <textarea id="bio" name="bio" maxlength="300"
+        placeholder="A little about your journey...">{{ current_user.bio or '' }}</textarea>
+    </div>
+
+    <button type="submit" class="btn-primary">Save Changes</button>
+    <a href="{{ url_for('profile.view_profile', username=current_user.username) }}" class="btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}

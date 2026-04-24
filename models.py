@@ -52,3 +52,17 @@ class SpiritualLog(db.Model):
 
     def __repr__(self):
         return f'<SpiritualLog {self.activity_type}>'
+
+class WallMessage(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.String(280), nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+    author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    author = db.relationship('User', foreign_keys=[author_id], backref='messages_sent')
+
+    recipient_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    recipient = db.relationship('User', foreign_keys=[recipient_id], backref='wall_messages')
+
+    def __repr__(self):
+        return f'<WallMessage from {self.author_id} to {self.recipient_id}>'
